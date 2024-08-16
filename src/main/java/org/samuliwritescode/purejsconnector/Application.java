@@ -26,10 +26,12 @@ public class Application {
                         """);
             }});
             JSComponent jsComponent = new JSComponent();
-            add(jsComponent);
             add(new TextArea() {{
                 addValueChangeListener(e -> jsComponent.setContent(e.getValue()));
+                setHeight("300px");
+                setWidthFull();
             }});
+            add(jsComponent);
         }
     }
 
