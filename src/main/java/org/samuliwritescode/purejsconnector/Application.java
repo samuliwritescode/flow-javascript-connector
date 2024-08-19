@@ -42,12 +42,12 @@ public class Application {
     public static class JSComponent extends Div {
         public JSComponent() {
             // Make sure that the connector is initialized
-            getElement().getNode().runWhenAttached(ui -> ui.getPage().executeJs("window.Vaadin.Flow.jsConnector.initLazy($0)", getElement()));
+            getElement().getNode().runWhenAttached(ui -> ui.beforeClientResponse(this, ctx -> ui.getPage().executeJs("window.Vaadin.Flow.jsConnector.initLazy($0)", getElement())));
         }
 
         public void setContent(String unsanitizedHtml) {
             //js-connector.js created $connector for the element.
-            getElement().getNode().runWhenAttached(ui -> getElement().callJsFunction("$connector.setContent", unsanitizedHtml));
+            getElement().getNode().runWhenAttached(ui -> ui.beforeClientResponse(this, ctx -> getElement().callJsFunction("$connector.setContent", unsanitizedHtml)));
         }
 
         @ClientCallable

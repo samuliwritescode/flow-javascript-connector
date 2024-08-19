@@ -31,8 +31,8 @@ Consider an example where you have a server side component and client side JS co
 public class JSComponent extends Div {
     public JSComponent() {
         // Make sure that the connector is initialized
-        getElement().getNode().runWhenAttached(ui -> ui.getPage().executeJs("window.Vaadin.Flow.jsConnector.initLazy($0)", getElement()));
-        getElement().getNode().runWhenAttached(ui -> getElement().callJsFunction("$connector.showHello", "Hello world!"));
+        getElement().getNode().runWhenAttached(ui -> ui.beforeClientResponse(this, ctx -> ui.getPage().executeJs("window.Vaadin.Flow.jsConnector.initLazy($0)", getElement())));
+        getElement().getNode().runWhenAttached(ui -> ui.beforeClientResponse(this, ctx -> getElement().callJsFunction("$connector.showHello", "Hello World!")));
     }
 }
 ```
