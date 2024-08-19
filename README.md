@@ -1,4 +1,4 @@
-# Vaadin Flow JavasScript Connector
+# Vaadin Flow JavaScript Connector
 
 ## Setting
 
